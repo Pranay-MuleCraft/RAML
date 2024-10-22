@@ -1,0 +1,39 @@
+#%RAML 1.0 DataType
+type: object
+properties:
+      firstName:
+        description: for the first name
+        displayName: First Name
+        type: string
+        minLength: 2
+        maxLength: 20
+        required: true
+        example: Pranay
+      lastName:
+        description: for the last name
+        displayName: Last Name
+        type: string
+        minLength: 2
+        maxLength: 20
+        required: true
+        example: Raj
+      trainerID:
+        description: for the trainer ID
+        displayName: Trainer ID
+        type: string
+        minLength: 2
+        maxLength: 20
+        required: false
+        example: 234DADW34
+      enrollmentDate:
+        description: for the enrollment date
+        displayName: Enrollment Date
+        type: date-only
+        required: false
+        example: 2024-10-10
+      courseID:
+        description: for the course ID
+        displayName: Course ID
+        type: string
+        required: false
+        example: 27DSD82   
