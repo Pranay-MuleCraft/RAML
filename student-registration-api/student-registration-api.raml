@@ -1,0 +1,214 @@
+#%RAML 1.0
+title: Student Registration API
+version: v1
+baseUri: https://localhost.com/api
+mediaType: 
+  - application/json
+protocols:
+  - https
+  - http
+description: This is an API structure for student details
+
+uses: 
+  GlobalResources: global-resources.raml
+
+securedBy: [ GlobalResources.BasicAuth ]
+
+/students:
+  get:
+    is: [GlobalResources.ErrorResponses]
+    displayName: Retrieving every students' details
+    description: To retrieve every students' details
+    queryParameters:
+      firstName:
+        description: for the first name
+        displayName: First Name
+        type: string
+        minLength: 2
+        maxLength: 20
+        required: false
+        example: Pranay
+      lastName:
+        description: for the last name
+        displayName: Last Name
+        type: string
+        minLength: 2
+        maxLength: 20
+        required: false
+        example: Raj
+      trainerID:
+        description: for the trainer ID
+        displayName: Trainer ID
+        type: string
+        minLength: 2
+        maxLength: 20
+        required: false
+        example: 234DADW34
+      enrollmentDate:
+        description: for the enrollment date
+        displayName: Enrollment Date
+        type: date-only
+        required: false
+        example: 2024-10-10
+      courseID:
+        description: for the course ID
+        displayName: Course ID
+        type: string
+        required: false
+        example: 27DSD82
+      page:
+        description: for the page
+        displayName: Page
+        type: integer
+        required: false
+        example: 14
+        default: 1
+      pageSize:
+        description: for pagination
+        displayName: Page Size
+        type: integer
+        required: false
+        example: 2
+        default: 100
+      emailID?:
+        description: for the email
+        displayName: Email ID
+        type: string
+        minLength: 3
+        pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
+        example: pranay@mulecraft.in
+      schoolName?:
+        description: for the school name
+        displayName: School Name
+        type: string
+        enum: [Kurinji School, DAV public school, Little Flower School]
+        example: DAV public school
+    responses:
+      200:
+        description: Successful retrieval of students' details
+        body:
+          application/json:
+            type: GlobalResources.Student[]
+            example: !include examples/retrieveStudents.json
+
+  post:
+    is: [GlobalResources.ErrorResponses]
+    displayName: Creating new students' account
+    description: To create new students' account
+    body:
+      application/json:
+        type: GlobalResources.StudentRegister[]
+        example: !include examples/registerStudents.json
+    responses:
+      201:
+        description: New students are now registered
+        body:
+          application/json:
+            example:
+              {
+                  "201 CREATED": "The request has succeeded and new resources has been created as a result."
+              }
+      
+  put:
+      is: [GlobalResources.ErrorResponses]
+      displayName: Updating every Student's Details
+      description: To update details of all the students
+      body:
+        application/json:
+          type: GlobalResources.StudentUpdate[]
+          example: !include examples/updateStudents.json
+      responses:
+        200:
+          description: Updating every Student's details
+          body:
+            application/json:
+              example:
+                {
+                  "200 OK": "The request has succeeded."
+                }
+        
+  delete:
+      is: [GlobalResources.ErrorResponses]
+      displayName: Deleting every Student's Details
+      description: To delete every student's details
+      body:
+        application/json:
+          type: GlobalResources.StudentDelete[]
+          example: !include examples/deleteStudents.json
+      responses:
+        200:
+          description: Deleting every Student's Details
+          body:
+            application/json:
+              example:
+                {
+                  "200 OK": "The request has succeeded."
+                }
+
+  /{studentID}:
+    get:
+      is: [GlobalResources.ErrorResponses]
+      displayName: Retrieving student's details
+      description: To retrieve student's details
+      responses:
+        200:
+          description: Successful retrieval of student's details
+          body:
+            application/json:
+              type: GlobalResources.Student
+              example: !include examples/retrieveStudent.json
+
+    post:
+      is: [GlobalResources.ErrorResponses]
+      displayName: Creating new account of a student
+      description: To create account of a student
+      body:
+        application/json:
+          type: GlobalResources.StudentUpdate
+          example: !include examples/registerStudent.json
+      responses:
+        201:
+          description: Creating Student's account
+          body:
+            application/json:
+              example:
+                {
+                  "201 CREATED": "The request has succeeded and a new resource has been created as a result."
+                }
+
+    put:
+      is: [GlobalResources.ErrorResponses]
+      displayName: Updating Student's Details
+      description: To update single student's details
+      body:
+        application/json:
+          type: GlobalResources.StudentUpdate
+          example: !include examples/updateStudent.json
+      responses:
+        200:
+          description: Updating single Student's Detail
+          body:
+            application/json:
+              example:
+                {
+                  "200 OK": "The request has succeeded."
+                }
+
+    delete:
+      is: [GlobalResources.ErrorResponses]
+      displayName: Deleting Student's Details
+      description: To delete single student's details
+      body:
+        application/json:
+          type: GlobalResources.StudentDelete
+          example: !include examples/deleteStudent.json
+      responses:
+        200:
+          description: Deleteing single Student's Details
+          body:
+            application/json:
+              example:
+                {
+                  "200 OK": "The request has succeeded."
+                }
+        
