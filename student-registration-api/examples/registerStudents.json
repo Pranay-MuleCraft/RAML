@@ -1,0 +1,22 @@
+[
+  {
+    "firstName": "Pranay",
+    "lastName": "Raj",
+    "trainerID": "234DADW34",
+    "enrollmentDate": "2024-10-10",
+    "status": "Done",
+    "courseID": "27DSD82",
+    "emailID": "pranay2017raj@gmail.com",
+    "schoolName": "DAV Public School"
+   },
+  {
+    "firstName": "Garv",
+    "lastName": "Raj",
+    "trainerID": "768ADW34",
+    "enrollmentDate": "2023-10-10",
+    "status": "Done",
+    "courseID": "27SGDHREW2",
+    "emailID": "garvraj2345@gmail.com",
+    "schoolName": "Little Flower School"
+  }
+]
