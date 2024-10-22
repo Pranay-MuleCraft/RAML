@@ -1,0 +1,15 @@
+#%RAML 1.0 Library
+usage: This library rovides some common response message structures for APIs
+
+types:
+  ErrorResponse:
+    description: Represents a standard message body to be returned with error responses
+    properties:
+      errorCode:
+        type: string
+        description: "Short code to identify the error"
+        example: "INVALID_PARAMETER"
+      errorMessage:
+        type: string
+        description: "Verbose human readable error message"
+        example: "The value you entered is out of bounds"
